@@ -1,0 +1,41 @@
+Dataset,Model_Key,Model,Paper_Accuracy,Our_Accuracy,Difference,Replication_Note
+DS1,LR,Logistic Regression (LR),0.97,0.9303,-0.0397,LIWC-Approximation
+DS2,LR,Logistic Regression (LR),0.91,0.8137,-0.0963,LIWC-Approximation
+DS3,LR,Logistic Regression (LR),0.91,0.9173,0.0073,LIWC-Approximation
+DS4,LR,Logistic Regression (LR),0.87,0.8393,-0.0307,LIWC-Approximation
+DS1,LSVM,Linear SVM (LSVM),0.98,0.9427,-0.0373,LIWC-Approximation
+DS2,LSVM,Linear SVM (LSVM),0.37,0.8416,0.4716,LIWC-Approximation
+DS3,LSVM,Linear SVM (LSVM),0.53,0.9248,0.3948,LIWC-Approximation
+DS4,LSVM,Linear SVM (LSVM),0.86,0.8534,-0.0066,LIWC-Approximation
+DS1,MLP,Multilayer Perceptron (MLP),0.98,0.9649,-0.0151,LIWC-Approximation
+DS2,MLP,Multilayer Perceptron (MLP),0.35,0.8685,0.5185,LIWC-Approximation
+DS3,MLP,Multilayer Perceptron (MLP),0.94,0.9156,-0.0244,LIWC-Approximation
+DS4,MLP,Multilayer Perceptron (MLP),0.9,0.8999,-0.0001,LIWC-Approximation
+DS1,KNN,K-Nearest Neighbors (KNN),0.88,0.8906,0.0106,LIWC-Approximation
+DS2,KNN,K-Nearest Neighbors (KNN),0.28,0.798,0.518,LIWC-Approximation
+DS3,KNN,K-Nearest Neighbors (KNN),0.82,0.9298,0.1098,LIWC-Approximation
+DS4,KNN,K-Nearest Neighbors (KNN),0.77,0.8252,0.0552,LIWC-Approximation
+DS1,RF,Random Forest (RF),0.99,0.9691,-0.0209,LIWC-Approximation
+DS2,RF,Random Forest (RF),0.35,0.8805,0.5305,LIWC-Approximation
+DS3,RF,Random Forest (RF),0.95,0.9541,0.0041,LIWC-Approximation
+DS4,RF,Random Forest (RF),0.91,0.9107,0.0007,LIWC-Approximation
+DS1,VC1,Voting Classifier 1 (RF+LR+KNN),0.98,0.9473,-0.0327,LIWC-Approximation
+DS2,VC1,Voting Classifier 1 (RF+LR+KNN),0.36,0.8577,0.4977,LIWC-Approximation
+DS3,VC1,Voting Classifier 1 (RF+LR+KNN),0.93,0.9323,0.0023,LIWC-Approximation
+DS4,VC1,Voting Classifier 1 (RF+LR+KNN),0.89,0.8845,-0.0055,LIWC-Approximation
+DS1,VC2,Voting Classifier 2 (LR+LSVM+DT),0.98,0.9459,-0.0341,LIWC-Approximation
+DS2,VC2,Voting Classifier 2 (LR+LSVM+DT),0.9,0.8334,-0.0666,LIWC-Approximation
+DS3,VC2,Voting Classifier 2 (LR+LSVM+DT),0.92,0.9273,0.0073,LIWC-Approximation
+DS4,VC2,Voting Classifier 2 (LR+LSVM+DT),0.88,0.8553,-0.0247,LIWC-Approximation
+DS1,Bagging,Bagging Classifier (DTs),0.99,0.9599,-0.0301,LIWC-Approximation
+DS2,Bagging,Bagging Classifier (DTs),0.94,0.8759,-0.0641,LIWC-Approximation
+DS3,Bagging,Bagging Classifier (DTs),0.91,0.9507,0.0407,LIWC-Approximation
+DS4,Bagging,Bagging Classifier (DTs),0.9,0.9066,0.0066,LIWC-Approximation
+DS1,AdaBoost,Boosting Classifier (AdaBoost),0.98,0.9347,-0.0453,LIWC-Approximation
+DS2,AdaBoost,Boosting Classifier (AdaBoost),0.94,0.8096,-0.1304,LIWC-Approximation
+DS3,AdaBoost,Boosting Classifier (AdaBoost),0.91,0.9256,0.0156,LIWC-Approximation
+DS4,AdaBoost,Boosting Classifier (AdaBoost),0.88,0.8499,-0.0301,LIWC-Approximation
+DS1,XGB,Boosting Classifier (XGBoost),0.98,0.9694,-0.0106,LIWC-Approximation
+DS2,XGB,Boosting Classifier (XGBoost),0.94,0.8912,-0.0488,LIWC-Approximation
+DS3,XGB,Boosting Classifier (XGBoost),0.92,0.9624,0.0424,LIWC-Approximation
+DS4,XGB,Boosting Classifier (XGBoost),0.9,0.9077,0.0077,LIWC-Approximation

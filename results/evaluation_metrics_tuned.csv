@@ -1,0 +1,41 @@
+Dataset,Mode,Category,Model_Key,Model,Accuracy,Precision,Recall,F1_Score,Train_Time_s
+DS1,LIWC-Approx,Individual,LR,Logistic Regression (LR),0.9432,0.9283,0.9567,0.9423,4.71
+DS1,LIWC-Approx,Individual,LSVM,Linear SVM (LSVM),0.9488,0.934,0.9625,0.948,8.01
+DS1,LIWC-Approx,Individual,MLP,Multilayer Perceptron (MLP),0.9649,0.9633,0.9644,0.9638,100.92
+DS1,LIWC-Approx,Individual,KNN,K-Nearest Neighbors (KNN),0.8939,0.8419,0.9617,0.8978,27.63
+DS1,LIWC-Approx,Ensemble,RF,Random Forest (RF),0.9691,0.9779,0.958,0.9678,49.42
+DS1,LIWC-Approx,Ensemble,VC1,Voting Classifier 1 (RF+LR+KNN),0.9562,0.9389,0.9729,0.9556,4.92
+DS1,LIWC-Approx,Ensemble,VC2,Voting Classifier 2 (LR+LSVM+DT),0.9514,0.938,0.9634,0.9506,0.01
+DS1,LIWC-Approx,Ensemble,Bagging,Bagging Classifier (DTs),0.9599,0.9685,0.948,0.9582,26.83
+DS1,LIWC-Approx,Ensemble,AdaBoost,Boosting Classifier (AdaBoost),0.9437,0.9334,0.9518,0.9425,124.8
+DS1,LIWC-Approx,Ensemble,XGB,Boosting Classifier (XGBoost),0.9694,0.9687,0.9681,0.9684,11.85
+DS2,LIWC-Approx,Individual,LR,Logistic Regression (LR),0.8426,0.865,0.8184,0.841,1.62
+DS2,LIWC-Approx,Individual,LSVM,Linear SVM (LSVM),0.8546,0.8786,0.8289,0.853,3.92
+DS2,LIWC-Approx,Individual,MLP,Multilayer Perceptron (MLP),0.8685,0.885,0.8524,0.8684,27.9
+DS2,LIWC-Approx,Individual,KNN,K-Nearest Neighbors (KNN),0.8052,0.7837,0.8524,0.8166,6.92
+DS2,LIWC-Approx,Ensemble,RF,Random Forest (RF),0.8805,0.9024,0.8578,0.8796,25.66
+DS2,LIWC-Approx,Ensemble,VC1,Voting Classifier 1 (RF+LR+KNN),0.8726,0.8909,0.8543,0.8722,1.09
+DS2,LIWC-Approx,Ensemble,VC2,Voting Classifier 2 (LR+LSVM+DT),0.852,0.8756,0.8267,0.8504,0.0
+DS2,LIWC-Approx,Ensemble,Bagging,Bagging Classifier (DTs),0.8759,0.8916,0.8607,0.8759,12.28
+DS2,LIWC-Approx,Ensemble,AdaBoost,Boosting Classifier (AdaBoost),0.8282,0.8482,0.8068,0.827,59.97
+DS2,LIWC-Approx,Ensemble,XGB,Boosting Classifier (XGBoost),0.8912,0.8964,0.889,0.8927,7.85
+DS3,LIWC-Approx,Individual,LR,Logistic Regression (LR),0.9265,0.8986,0.95,0.9236,0.36
+DS3,LIWC-Approx,Individual,LSVM,Linear SVM (LSVM),0.929,0.906,0.9464,0.9258,0.38
+DS3,LIWC-Approx,Individual,MLP,Multilayer Perceptron (MLP),0.9156,0.8781,0.9518,0.9135,4.09
+DS3,LIWC-Approx,Individual,KNN,K-Nearest Neighbors (KNN),0.9332,0.9152,0.9446,0.9297,0.59
+DS3,LIWC-Approx,Ensemble,RF,Random Forest (RF),0.9541,0.9407,0.9625,0.9515,4.63
+DS3,LIWC-Approx,Ensemble,VC1,Voting Classifier 1 (RF+LR+KNN),0.944,0.9199,0.9643,0.9416,0.07
+DS3,LIWC-Approx,Ensemble,VC2,Voting Classifier 2 (LR+LSVM+DT),0.9307,0.9049,0.9518,0.9278,0.0
+DS3,LIWC-Approx,Ensemble,Bagging,Bagging Classifier (DTs),0.9507,0.9341,0.9625,0.9481,1.74
+DS3,LIWC-Approx,Ensemble,AdaBoost,Boosting Classifier (AdaBoost),0.9323,0.9194,0.9375,0.9284,13.82
+DS3,LIWC-Approx,Ensemble,XGB,Boosting Classifier (XGBoost),0.9624,0.9558,0.9643,0.96,4.13
+DS4,LIWC-Approx,Individual,LR,Logistic Regression (LR),0.854,0.8412,0.8662,0.8535,7.93
+DS4,LIWC-Approx,Individual,LSVM,Linear SVM (LSVM),0.8616,0.8472,0.8761,0.8614,19.54
+DS4,LIWC-Approx,Individual,MLP,Multilayer Perceptron (MLP),0.8999,0.889,0.9098,0.8993,248.35
+DS4,LIWC-Approx,Individual,KNN,K-Nearest Neighbors (KNN),0.8288,0.782,0.903,0.8381,72.76
+DS4,LIWC-Approx,Ensemble,RF,Random Forest (RF),0.9126,0.9325,0.8861,0.9087,101.97
+DS4,LIWC-Approx,Ensemble,VC1,Voting Classifier 1 (RF+LR+KNN),0.8907,0.8768,0.9046,0.8905,12.27
+DS4,LIWC-Approx,Ensemble,VC2,Voting Classifier 2 (LR+LSVM+DT),0.8647,0.8518,0.8771,0.8643,0.01
+DS4,LIWC-Approx,Ensemble,Bagging,Bagging Classifier (DTs),0.9066,0.9261,0.8799,0.9024,54.49
+DS4,LIWC-Approx,Ensemble,AdaBoost,Boosting Classifier (AdaBoost),0.8593,0.8433,0.8762,0.8594,223.8
+DS4,LIWC-Approx,Ensemble,XGB,Boosting Classifier (XGBoost),0.9077,0.9123,0.8984,0.9053,17.1

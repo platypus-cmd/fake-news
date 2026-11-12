@@ -1,0 +1,1067 @@
+
+--- PAGE 1 ---
+ResearchArticle
+FakeNewsDetectionUsingMachineLearningEnsembleMethods
+Iftikhar Ahmad
+ ,1 Muhammad Yousaf,1 Suhail Yousaf
+ ,1
+and Muhammad Ovais Ahmad
+ 2
+1DepartmentofComputerScienceandInformationTechnology,UniversityofEngineeringandTechnology,Peshawar,Pakistan
+2Department of Mathematics and Computer Science, Karlstad University, Karlstad, Sweden
+Correspondence should be addressed to Muhammad Ovais Ahmad; ovais.ahmad@kau.se
+Received 4 September 2020; Revised 14 September 2020; Accepted 16 September 2020; Published 17 October 2020
+Academic
+Editor: M. Irfan Uddin
+Copyright © 2020 Iftikhar Ahmad et al. )is is an open access article distributed under the Creative Commons Attribution
+License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is
+properly cited.
+)eadventoftheWorldWideWebandtherapidadoptionofsocialmediaplatforms(suchasFacebookandTwitter)pavedtheway
+for information dissemination that has never been witnessed in the human history before. With the current usage of social media
+platforms,consumersarecreatingandsharingmoreinformationthaneverbefore,someofwhicharemisleadingwithnorelevanceto
+reality. Automated classiﬁcation of a text article as misinformation or disinformation is a challenging task. Even an expert in a
+particulardomainhastoexploremultipleaspectsbeforegivingaverdictonthetruthfulnessofanarticle.Inthiswork,weproposeto
+usemachinelearningensembleapproachforautomatedclassiﬁcationofnewsarticles.Ourstudyexploresdiﬀerenttextualproperties
+that can be used to distinguish fake contents from real. By using those properties, we train a combination of diﬀerent machine
+learning algorithms using various ensemble methods and evaluate their performance on 4 real world datasets. Experimental
+evaluation conﬁrms the superior performance of our proposed ensemble learner approach in comparison to individual learners.
+1.Introduction
+)e advent of the World Wide Web and the rapid adoption of
+social media platforms (such as Facebook and Twitter) paved
+the way for information dissemination that has never been
+witnessedinthehumanhistorybefore.Besidesotherusecases,
+newsoutletsbeneﬁttedfromthewidespreaduseofsocialmedia
+platforms by providing updated news in near real time to its
+subscribers. )e news media evolved from newspapers, tab-
+loids, and magazines to a digital form such as online news
+platforms, blogs, social media feeds, and other digital media
+formats[1].Itbecameeasierforconsumerstoacquirethelatest
+news at their ﬁngertips. Facebook referrals account for 70% of
+traﬃc to news websites [2]. )ese social media platforms in
+their current state are extremely powerful and useful for their
+abilitytoallowuserstodiscussandshareideasanddebateover
+issues such as democracy, education, and health. However,
+such platforms are also used with a negative perspective by
+certainentitiescommonlyformonetarygain[3,4]andinother
+cases for creating biasedopinions, manipulatingmindsets, and
+spreading satire or absurdity. )e phenomenon is commonly
+known as fake news.
+)erehasbeenarapidincreaseinthespreadoffakenews
+in the last decade, most prominently observed in the 2016 US
+elections [5]. Such proliferation of sharing articles online that
+do not conform to facts has led to many problems not just
+limitedtopoliticsbutcoveringvariousotherdomainssuchas
+sports, health, and also science [3]. One such area aﬀected by
+fakenewsistheﬁnancialmarkets[6],wherearumorcanhave
+disastrous consequences and may bring the market to a halt.
+Our ability to take adecision relies mostly on thetype of
+information we consume; our world view is shaped on the
+basis of information we digest. )ere is increasing evidence
+that consumers have reacted absurdly to news that later
+proved to be fake [7, 8]. One recent case is the spread of
+novel corona virus, where fake reports spread over the
+Internet about the origin, nature, and behavior of the virus
+[9]. )e situation worsened as more people read about the
+fake contents online. Identifying such news online is a
+daunting task.
+Hindawi
+Complexity
+Volume 2020, Article ID 8885861, 11 pages
+https://doi.org/10.1155/2020/8885861
+
+--- PAGE 2 ---
+Fortunately, there are a number of computational
+techniques that can be used to mark certain articles as fake
+on the basis of their textual content [10]. Majority of these
+techniques use fact checking websites such as “PolitiFact”
+and “Snopes.” )ere are a number of repositories main-
+tained by researchers that contain lists of websites that are
+identiﬁedasambiguousandfake[11].However,theproblem
+with these resources is that human expertise is required to
+identify articles/websites as fake. More importantly, the fact
+checking websites contain articles from particular domains
+suchas politicsandarenotgeneralizedtoidentifyfakenews
+articles from multiple domains such as entertainment,
+sports, and technology.
+)e World Wide Web contains data in diverse formats
+such as documents, videos, and audios. News published
+online in an unstructured format (such as news, articles,
+videos, and audios) is relatively diﬃcult to detect and classify
+as this strictly requires human expertise. However, compu-
+tational techniques such as natural language processing
+(NLP) can be used to detect anomalies that separate a text
+article that is deceptive in nature from articles that are based
+on facts [12]. Other techniques involve the analysis of
+propagation of fake news in contrast with real news [13].
+More speciﬁcally, the approach analyzes how a fake news
+article propagates diﬀerently on a network relative to a true
+article. )e response that an article gets can be diﬀerentiated
+at a theoretical level to classify the article as real or fake. A
+more hybrid approach can also be used to analyze the social
+responseofanarticlealongwithexploringthetextualfeatures
+to examine whether an article is deceptive in nature or not.
+Anumberofstudieshaveprimarilyfocusedondetection
+and classiﬁcation of fake news on social media platforms
+such as Facebook and Twitter [13, 14]. At conceptual level,
+fake news has been classiﬁed into diﬀerent types; the
+knowledge is then expanded to generalize machine learning
+(ML)modelsformultipledomains[10,15,16].)estudyby
+Ahmedetal.[17]includedextractinglinguisticfeaturessuch
+as n-grams from textual articles and training multiple ML
+modelsincludingK-nearestneighbor(KNN),supportvector
+machine (SVM), logistic regression (LR), linear support
+vector machine (LSVM), decision tree (DT), and stochastic
+gradient descent (SGD), achieving the highest accuracy
+(92%) with SVM and logistic regression. According to the
+research,asthenumberof nincreasedin n-gramscalculated
+for a particular article, the overall accuracy decreased. )e
+phenomenonhasbeenobservedforlearningmodelsthatare
+used for classiﬁcation. Shu et al. [12] achieved better ac-
+curacieswithdiﬀerentmodelsbycombiningtextualfeatures
+with auxiliary information such as user social engagements
+on social media. )e authors also discussed the social and
+psychological theories and how they can be used to detect
+false information online. Further, the authors discussed
+diﬀerent data mining algorithms for model constructions
+and techniques shared for features extraction. )ese models
+are based on knowledge such as writing style, and social
+context such as stance and propagation.
+A diﬀerent approach is followed by Wang [18]. )e
+author used textual features and metadata for training
+various ML models. )e author focused mainly on using
+convolutional neural network (CNN). Aconvolutional layer
+is used to capture the dependency between the metadata
+vectors, followed by a bidirectional LSTM layer. )e max-
+pooled text representations were concatenated with the
+metadata representation from the bidirectional LSTM,
+which was fed to fully connected layer with a softmax ac-
+tivation function to generate the ﬁnal prediction. )e re-
+search is conducted on a dataset from political domain
+which contains statements from two diﬀerent parties. Along
+with that, some metadata such as subject, speaker, job, state,
+party, context, and history are also included as a feature set.
+Accuracy of 27.7% was achieved with combination of fea-
+tures such as text and speaker, whereas 27.4% accuracy was
+achieved by combining all the diﬀerent metadata elements
+with text. A competitive solution is provided by Riedel et al.
+[19], which is a stance detection system that assigns one of
+four labels to an article, “agree,” “disagree,” “discuss,” or
+“unrelated,”dependingontheconformityofarticleheadline
+with article text. )e authors used linguistic properties of
+textsuchastermfrequency(TF)andtermfrequency-inverse
+document frequency (TF-IDF) as a feature set, and a
+multilayer perceptron (MLP) classiﬁer is used with one
+hidden layer and a softmax function on the output of the
+ﬁnal layer. )e dataset contained articles with a headline,
+body, and label. )e system’s accuracy on the “disagree”
+label on test examples was poor, whereas it performs best
+with respect to the “agree” label. )e authors used a simple
+MLP with some ﬁne-tuned hyperparameters to achieve an
+overall accuracy of 88.46%. Shu et al. [12] also discussed
+several varieties of veracity assessment methods to detect
+fake news online. Two major categories of assessment
+methods are explored: one is linguistic cue approaches and
+the other is network analyses approaches. A combination of
+both creates a more robust hybrid approach for fake news
+detection online. Linguistic approaches involve deep syntax,
+rhetorical structure, and discourse analysis. )ese linguistic
+approachesareusedtotrainclassiﬁerssuchasSVMorna ¨ıve
+Bayes models. Network-based approaches included ana-
+lyzing and processing social network behavior and linked
+data. A unique approach is followed by Vosoughi et al. [13]
+toexplorethepropertiesofnewsspreadonsocialmedia;i.e.,
+the authors discussed the spread of news (rumors) on social
+media such as Twitter and analyzed how the spread of fake
+news diﬀers from real news in terms of its diﬀusion on
+Twitter. Multiple analysis techniques are discussed in the
+paper to explore the spread of fake news online, such as the
+depth,thesize,themaximumbreadth,thestructuralvirality,
+themeanbreadthoftrueandfalserumorcascadesatvarious
+depths, the number of unique Twitter users reached at any
+depth, and the number of minutes it takes for true and false
+rumorcascades toreachdepthandnumber ofTwitterusers.
+1.1. Our Contributions.In the current fake news corpus,
+there have been multiple instances where both supervised
+and unsupervised learning algorithms are used to classify
+text [20, 21]. However, most of the literature focuses on
+speciﬁc datasets or domains, most prominently the politics
+domain [10, 19, 21]. )erefore, the algorithm trained works
+2 Complexity
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 3 ---
+best on a particular type of article’s domain and does not
+achieve optimal results when exposed to articles from other
+domains. Since articles from diﬀerent domains have a
+unique textual structure, it is diﬃcult to train a generic
+algorithmthatworksbestonallparticularnewsdomains.In
+this paper, we propose a solution to the fake news detection
+problem using the machine learning ensemble approach.
+Our study explores diﬀerent textual properties that could be
+used to distinguish fake contents from real. By using those
+properties, we train a combination of diﬀerent machine
+learning algorithms using various ensemble methods that
+are not thoroughly explored in the current literature. )e
+ensemble learners have proven to be useful in a wide variety
+of applications, as the learning models have the tendency to
+reduce error rate by using techniques such as bagging and
+boosting [22]. )ese techniques facilitate the training of
+diﬀerent machine learning algorithms in an eﬀective and
+eﬃcient manner. We also conducted extensive experiments
+on 4 real world publicly available datasets. )e results
+validate the improved performance of our proposed tech-
+nique using the 4 commonly used performance metrics
+(namely, accuracy, precision, recall, and F-1 score).
+2.Materials and Methods
+In the following, we describe our proposed framework,
+followed by the description of algorithms, datasets, and
+performance evaluation metrics.
+2.1. Proposed Framework.In our proposed framework, as
+illustrated in Figure 1, we are expanding on the current
+literature by introducing ensemble techniques with various
+linguistic feature sets to classify news articles from multiple
+domainsastrueorfake.)eensembletechniquesalongwith
+LinguisticInquiryandWordCount(LIWC)featuresetused
+in this research are the novelty of our proposed approach.
+)ere are numerous reputed websites that post legiti-
+mate news contents, and a few other websites such as
+PolitiFact and Snopes which are used for fact checking. In
+addition, there are open repositories which are maintained
+by researchers [11] to keep an up-to-date list of currently
+available datasets and hyperlinks to potential fact checking
+sites that may help in countering false news spread. How-
+ever, we selected three datasets for our experiments which
+contain news from multiple domains (such as politics, en-
+tertainment, technology, and sports) and contain a mix of
+both truthful and fake articles. )e datasets are available
+online and are extracted from the World Wide Web. )e
+ﬁrst dataset is ISOT Fake News Dataset [23]; the second and
+third datasets are publicly available at Kaggle [24, 25]. A
+detaileddescriptionofthedatasetsisprovidedinSection2.5.
+)e corpus collected from the World Wide Web is
+preprocessed before being used as an input for training the
+models. )e articles’ unwanted variables such as authors,
+dateposted,URL,andcategoryareﬁlteredout.Articleswith
+nobodytext orhavinglessthan 20wordsinthearticlebody
+arealsoremoved.Multicolumnarticlesaretransformedinto
+single column articles for uniformity of format and
+structure.)eseoperationsareperformedonallthedatasets
+to achieve consistency of format and structure.
+Once the relevant attributes are selected after the data
+cleaning and exploration phase, the next step involves ex-
+traction of the linguistic features. Linguistic features in-
+volved certain textual characteristics converted into a
+numericalformsuchthattheycanbeusedasaninputforthe
+training models. )ese features include percentage of words
+implying positive or negative emotions; percentage of stop
+words;punctuation;functionwords;informallanguage;and
+percentage of certain grammar used in sentences such as
+adjectives, preposition, and verbs. To accomplish the ex-
+traction of features from the corpus, we used the LIWC2015
+tool which classiﬁes the text into diﬀerent discrete and
+continuous variables, some of which are mentioned above.
+LIWCtoolextracts93diﬀerentfeaturesfromanygiventext.
+As all of the features extracted using the tool are numerical
+values, no encoding is required for categorical variables.
+However,scalingisemployedtoensurethatvariousfeature’s
+values lie in the range of (0, 1). )is is necessary as some
+values are in the range of 0 to 100 (such as percentage
+values), whereas other values have arbitrary range (such as
+word counts). )e input features are then used to train the
+diﬀerent machine learning models. Each dataset is divided
+into training and testing set with a 70/30 split, respectively.
+)earticlesareshuﬄedtoensureafairallocationoffakeand
+true articles in training and tests instances.
+)e learning algorithms are trained with diﬀerent
+hyperparameters to achieve maximum accuracy for a given
+dataset, with an optimal balance between variance and bias.
+Each model is trained multiple times with a set of diﬀerent
+parameters using a grid search to optimize the model for the
+best outcome. Using a grid search to ﬁnd the best parameters
+is computationally expensive [26]; however, the measure is
+takentoensurethemodelsdonotoverﬁtorunderﬁtthedata.
+Noveltothisresearch,variousensembletechniquessuch
+as bagging, boosting, and voting classiﬁer are explored to
+evaluate the performance over the multiple datasets. We
+used two diﬀerent voting classiﬁers composed of three
+learning models: the ﬁrst voting classiﬁer is an ensemble of
+logistic regression, random forest, and KNN, whereas the
+second voting classiﬁer consists of logistic regression, linear
+SVM, and classiﬁcation and regression trees (CART). )e
+criteria used for training the voting classiﬁers is to train
+individualmodelswiththebestparametersandthentestthe
+model based on the selectionof the output labelon the basis
+of major votes by all three models. We have trained a
+bagging ensemble consisting of 100 decision trees, whereas
+two boosting ensemble algorithms are used, XGBoost and
+AdaBoost. A k-fold (k �10) cross validation model is
+employed for all ensemble learners. )e learning models
+used are described in detail in Section 2.2. To evaluate the
+performance of each model, we used accuracy, precision,
+recall, and F1 score metrics as discussed in Section 2.6.
+2.2.Algorithms. We used the following learning algorithms
+in conjunction with our proposed methodology to evaluate
+the performance of fake news detection classiﬁers.
+Complexity 3
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 4 ---
+2.2.1. Logistic Regression.As we are classifying text on the
+basisofawidefeatureset,withabinaryoutput(true/falseor
+true article/fake article), a logistic regression (LR) model is
+used, since it provides the intuitive equation to classify
+problemsintobinaryormultipleclasses[27].Weperformed
+hyperparameters tuning to get the best result for all indi-
+vidual datasets, while multiple parameters are tested before
+acquiring the maximum accuracies from LR model.
+Mathematically, the logistic regression hypothesis function
+can be deﬁned as follows [27]:
+hθ(X) � 1
+1 + e− β0 +β1X( ) . (1)
+Logistic regression uses a sigmoid function to transform
+theoutputtoaprobabilityvalue;theobjectiveistominimize
+the cost function to achieve an optimal probability. )e cost
+function is calculated as shown in
+Cost hθ(x), y  􏼁 �
+log hθ(x)  􏼁 , y � 1,
+−log 1 − hθ(x)  􏼁 , y � 0.
+􏼨 (2)
+2.2.2. Support Vector Machine.Support vector machine
+(SVM) is another model for binary classiﬁcation problem
+and is available in various kernels functions [28]. )e
+objective ofanSVMmodel isto estimateahyperplane (or
+decision boundary) on the basis of feature set to classify
+data points [29]. )e dimension of hyperplane varies
+according to the number of features. As there could be
+multiple possibilities for a hyperplane to exist in an N-
+dimensional space, the task is to identify the plane that
+separates the data points of two classes with maximum
+margin. A mathematical representation of the cost
+functionfortheSVMmodelisdeﬁnedasgivenin[30]and
+shown in
+J(θ) � 1
+2 􏽘
+n
+j�1
+θ2
+j , (3)
+such that
+θTx(i) ≥1, y (i) � 1, (4)
+θTx(i) ≤ −1, y (i) � 0. (5)
+)e function above uses a linear kernel. Kernels are
+usually used toﬁtdata pointsthat cannotbeeasilyseparable
+or data points that are multidimensional. In our case, we
+have used sigmoid SVM, kernel SVM (polynomial SVM),
+Gaussian SVM, and basic linear SVM models.
+2.2.3. Multilayer Perceptron. A multilayer perceptron
+(MLP) is an artiﬁcial neural network, with an input layer,
+one or more hidden layers, andan output layer.MLPcan be
+as simple as having each of the three layers; however, in our
+experiments we have ﬁne-tuned the model with various
+parameters and number of layers to generate an optimum
+predicting model. A basic multilayered perceptron model
+with one hidden layer can be represented as a function as
+shown below [31]:
+f(x) � g b(2) + W(2) s b(1) + W(1)x􏼐 􏼑􏼐 􏼑􏼐 􏼑. (6)
+Here,b(1) andb(2) arethebiasvectors, W(1) andW(2) arethe
+weight matrices, andg ands are the activation functions. In
+our case, the activation function is ReLU and the Adam
+solver, with 3 hidden layers.
+2.2.4.K-NearestNeighbors(KNN). KNN is an unsupervised
+machine learning model where a dependent variable is not
+required to predict the outcome on a speciﬁc data. We
+Dataset
+collection
+Data cleaning/
+exploration
+Model training
+/ensemble
+methods
+Feature
+selection
+Extract linguistic
+features
+Hyperparameters/
+model tuning
+Training data Test data
+Classification
+Model
+evaluation
+Trained model
+Data scraping
+World wide web
+User query
+Figure 1: Workﬂow for training algorithms and classiﬁcation of news articles.
+4 Complexity
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 5 ---
+provide enough training data to the model and let it decide
+to which particular neighborhood a data point belongs.
+KNN model estimates the distance of a new data point to its
+nearest neighbors, and the value ofK estimates the majority
+ofitsneighbors’votes;ifthevalueof Kis1,thenthenewdata
+point is assigned to a class which has the nearest distance.
+)emathematicalformulaetoestimatethedistancebetween
+two points can be calculated as follows [31]:
+Euclideandistance �
+�����������
+􏽘
+k
+i�1
+xi − yi  􏼁 2
+􏽶􏽴
+, (7)
+Manhattandistance �􏽘
+k
+i�1
+xi − yi
+􏼌􏼌􏼌􏼌
+􏼌􏼌􏼌􏼌, (8)
+Minkowskidistance � 􏽘
+k
+i�1
+xi − yi
+􏼌􏼌􏼌􏼌
+􏼌􏼌􏼌􏼌
+q⎛⎝ ⎞⎠
+1/q
+. (9)
+2.3. Ensemble Learners.We proposed using existing en-
+sembletechniquesalongwithtextualcharacteristicsasfeature
+input to improve the overall accuracy for the purpose of
+classiﬁcation between a truthful and a false article. Ensemble
+learners tend to have higher accuracies, as more than one
+model is trained using a particular technique to reduce the
+overall error rate and improve the performance of the model.
+)e intuition behind the ensemble modeling is synonymous
+to the one we are already used to in our daily life such as
+requesting opinions of multiple experts before taking a
+particular decision in order to minimize the chance of a bad
+decision or an undesirable outcome. For example, a classi-
+ﬁcationalgorithmcanbetrainedonaparticulardatasetwitha
+unique set of parameters that can produce a decision
+boundary which ﬁts the data to some extent. )e outcome of
+that particular algorithm depends notonly on the parameters
+that were provided to train the model, but also on the type of
+training data. If the training data contains less variance or
+uniform data, then the model might overﬁt and produce
+biased results over unseen data. )erefore, approaches like
+crossvalidationareusedtominimizetheriskofoverﬁtting.A
+number of models can be trained on diﬀerent set of pa-
+rameters to create multiple decision boundaries on randomly
+chosen data points as training data. Hence, using ensemble
+learning techniques, these problems can be addressed and
+mitigated by training multiple algorithms, and their results
+can be combined for near optimum outcome. One such
+technique is using voting classiﬁers where the ﬁnal classiﬁ-
+cation depends on the major votes provided by all algorithms
+[32]. However, there are other ensemble techniques as well
+that can be used in diﬀerent scenarios such as the following.
+2.3.1. Random Forest (RF).Random forest (RF) is an ad-
+vancedformofdecisiontrees(DT)whichisalsoasupervised
+learningmodel.RFconsistsoflargenumberofdecisiontrees
+working individually to predict an outcome of a class where
+the ﬁnal prediction is based on a class that received majority
+votes. )e error rate is low in random forest as compared to
+other models, due to low correlation among trees [33]. Our
+randomforestmodelwastrainedusingdiﬀerentparameters;
+i.e., diﬀerent numbers of estimators were used in a grid
+search to produce the best model that can predict the
+outcome with high accuracy. )ere are multiple algorithms
+to decide a split in a decision tree based on the problem of
+regression or classiﬁcation. For the classiﬁcation problem,
+we have used the Gini index as a cost function to estimate a
+split in the dataset. )e Gini index is calculated by sub-
+tracting the sum of the squared probabilities of each class
+from one. )e mathematical formula to calculate the Gini
+index (Gind ) is as follows [34]:
+Gind � 1 −􏽘
+c
+i�1
+Pi  􏼁 2, (10)
+2.3.2. Bagging Ensemble Classiﬁers.bootstrap aggregating,
+or in short bagging classiﬁer, is an early ensemble method
+mainly used to reduce the variance (overﬁtting) over a
+training set. Random forest model is one of the most fre-
+quentlyusedasavariantofbaggingclassiﬁer.Intuitively,for
+a classiﬁcation problem, the bagging model selects the class
+on the basis of major votes estimated byM number of trees
+to reduce the overall variance, while the data for each tree is
+selected using random sampling with replacement from
+overall dataset. For regression problems, however, the
+bagging model averages over multiple estimates.
+2.3.3. Boosting Ensemble Classiﬁers.boosting is another
+widely used ensemble method to train weak models to
+become strong learners. For that purpose, a forest of ran-
+domized trees is trained,and theﬁnal predictionis based on
+the majority vote outcome from each tree. )is method
+allows weak learners to correctly classify data points in an
+incremental approach that are usually misclassiﬁed. Initially
+equal weighted coeﬃcients are used for all data points to
+classify a given problem. In the successive rounds, the
+weighted coeﬃcients are decreased for data points that are
+correctly classiﬁed and are increased for data points that are
+misclassiﬁed [35]. Each subsequent tree formed in each
+round learns to reduce the errors from the preceding round
+and to increase the overall accuracy by correctly classifying
+data points that were misclassiﬁed in previous rounds. One
+major problem with boosting ensemble is that it might
+overﬁt to the training data which may lead to incorrect
+predictions for unseen instances [36]. )ere are multiple
+boosting algorithms available that can be used for both the
+purposesofclassiﬁcationandregression.Inourexperiments
+we used XGBoost [37] and AdaBoost [38] algorithms for
+classiﬁcation purpose.
+2.3.4. Voting Ensemble Classiﬁers.voting ensemble is gen-
+erally used for classiﬁcation problems as it allows the
+combination of two or more learning models trained on the
+Complexity 5
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 6 ---
+whole dataset [39]. Each model predicts an outcome for a
+sampledatapointwhichisconsidereda“vote”infavorofthe
+classthatthemodelhaspredicted.Onceeachmodelpredicts
+the outcome, the ﬁnal prediction is based on the majority
+vote for a speciﬁc class [32]. Voting ensemble, as compared
+to bagging and boosting algorithms, is simpler in terms of
+implementation. As discussed, bagging algorithms create
+multiple subsets of data by random sampling and replace-
+ment from the whole dataset, thus creating a number of
+datasets.Eachdatasetisthenusedtotrainamodel,whilethe
+ﬁnalresultisanaggregationofoutcomefromeachmodel.In
+case of boosting, multiple models are trained in a sequential
+manner where each model learns from the previous by
+increasing weights for the misclassiﬁed points, thus creating
+agenericmodelthatisabletocorrectlyclassifytheproblem.
+However, voting ensemble on the other hand is a combi-
+nation of multiple independent models that produces
+classiﬁcationresultsthat contribute totheoverall prediction
+by majority voting.
+2.4.BenchmarkAlgorithms. In this section, we discuss the
+benchmark algorithms with which we compare the per-
+formance of our methodology.
+2.4.1.LinearSVM. We use linear SVM approach proposed
+in [21]. To ensure a meaningful comparison, we trained the
+linearSVMonthefeaturesetasdiscussedin[21]with5-fold
+cross validation. Note that the approach is referred to as
+Perez-LSVM in the text.
+2.4.2. Convolutional Neural Network. Wang [18] used
+convolutional neural network (CNN) for automatic detec-
+tion of fake news. We employed the same approach using
+our dataset. However, we could not use the feature set of
+Wang[18]asthedatasetcontainsonlyshortstatements.)e
+approach is referred to as Wang-CNN in the text.
+2.4.3. Bidirectional Long Short-Term Memory Networks.
+Wang [18] also used bidirectional long short-term memory
+networks (Bi-LSTM), and we used the same approach with
+diﬀerent feature sets. )e approach is referred to as Wang-
+Bi-LSTM in the text.
+2.5.Datasets. )e datasets we used in this study are open
+source and freely available online. )e data includes both
+fake and truthful news articles from multiple domains. )e
+truthful news articles published contain true description of
+real world events, while the fake news websites contain
+claims that are not aligned with facts. )e conformity of
+claims from the politics domain for many of those articles
+canbemanuallycheckedwithfactcheckingwebsitessuchas
+politifact.comandsnopes.com.Wehaveusedthreediﬀerent
+datasetsinthisstudy,abriefdescriptionofwhichisprovided
+as follows.
+)e ﬁrst dataset is called the “ISOT Fake News Dataset”
+[23] (hereafter referred to as DS1) which contains both true
+and fake articles extracted from the World Wide Web. )e
+true articles are extracted from reuters.com which is a re-
+nowned news website, while the fake articles were extracted
+from multiple sources, mostly websites which are ﬂagged by
+politifact.com.)e dataset contains atotal of44,898 articles,
+out of which 21,417 are truthful articles and 23,481 fake
+articles. )e total corpora contain articles from diﬀerent
+domains, but most prominently target political news.
+)e second dataset is available at Kaggle [24] (hereafter
+referred to as DS2) which contains a total of 20,386 articles
+used for training and 5,126 articles used for testing. )e
+dataset is built from multiple sources on the Internet. )e
+articles are not limited to a single domain such as politics as
+they include both fake and true articles from various other
+domains.
+)e third dataset is also available at Kaggle [25] (here-
+after referred to as DS3); it includes a total of 3,352 articles,
+both fake and true. )e true articles are extracted from
+trusted online sources such as CNN, Reuters, the New York
+Times, and various others, while the fake news articles are
+extracted from untrusted news websites. )e domains it
+covered include sports, entertainment, and politics.
+A combined dataset is the collection of articles from the
+three datasets (hereafter referred to as DS4). As the articles
+varyinnatureineachdataset,thefourthdatasetiscreatedto
+evaluate the performance of algorithms on datasets which
+cover a wide array of domains in a single dataset.
+2.6. Performance Metrics.To evaluate the performance of
+algorithms, we used diﬀerent metrics. Most of them are
+basedontheconfusionmatrix.Confusionmatrixisatabular
+representation of a classiﬁcation model performance on the
+testset,whichconsistsoffourparameters:truepositive,false
+positive, true negative, and false negative (see Table 1).
+2.6.1. Accuracy. Accuracy is often the most used metric
+representing the percentage of correctly predicted obser-
+vations, either true or false. To calculate the accuracy of a
+model performance, the following equation can be used:
+Accuracy � TP +TN
+TP +TN +FP +FN. (11)
+In most cases, high accuracy value represents a good
+model, but considering the fact that we are training a
+classiﬁcationmodelinourcase,anarticlethatwaspredicted
+as true while it was actually false (false positive) can have
+negative consequences; similarly, if an article was predicted
+as false while it contained factual data, this can create trust
+issues. )erefore, we have used three other metrics that take
+into account the incorrectly classiﬁed observation, i.e.,
+precision, recall, and F1-score.
+2.6.2.Recall. Recall represents the total number of positive
+classiﬁcations out of true class. In our case, it represents the
+number of articles predicted as true out of the total number
+of true articles.
+6 Complexity
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 7 ---
+Recall � TP
+TP +FN. (12)
+2.6.3. Precision.Conversely, precision score represents the
+ratio of true positives to all events predicted as true. In our
+case,precision showsthenumberof articlesthataremarked
+as true out of all the positively predicted (true) articles:
+Precision � TP
+TP +FP. (13)
+2.6.4. F1-Score. F1-score represents the trade-oﬀ between
+precision and recall. It calculates the harmonic mean be-
+tween each of the two. )us, it takes both the false positive
+and the false negative observations into account. F1-score
+can be calculated using the following formula:
+F1 −score � 2Precision ×Recall
+Precision +Recall. (14)
+3.Results and Discussion
+Table2summarizestheaccuracyachievedbyeachalgorithm
+on the four considered datasets. It is evident that the
+maximum accuracy achieved on DS1 (ISOT Fake News
+Dataset) is 99%, achieved by random forest algorithm and
+Perez-LSVM. Linear SVM, multilayer perceptron, bagging
+classiﬁers, and boosting classiﬁers achieved an accuracy of
+98%. )e average accuracy attained by ensemble learners is
+97.67% on DS1, whereas the corresponding average for
+individual learners is 95.25%. )e absolute diﬀerence be-
+tween individual learners and ensemble learners is 2.42%
+whichisnotsigniﬁcant.Benchmark algorithmsWang-CNN
+and Wang-Bi-LSTM performed poorer than all other al-
+gorithms. On DS2, bagging classiﬁer (decision trees) and
+boosting classiﬁer (XGBoost) are the best performing al-
+gorithms,achievinganaccuracyof94%.Interestingly,linear
+SVM,randomforest,andPerez-LSVMperformedpoorlyon
+DS2. Individual learners reported an accuracy of 47.75%,
+whereas ensemble learners’ accuracy is 81.5%. A similar
+trend is observed for DS3, where individual learners’ ac-
+curacy is 80% whereas ensemble learners’ accuracy is 93.5%.
+However,unlikeDS2,thebestperformingalgorithmonDS3
+is Perez-LSVM which achieved an accuracy of 96%. On DS4
+(DS1, DS2, and DS3 combined), the best performing al-
+gorithm is random forest (91% accuracy). On average, in-
+dividual learners achieved an accuracy of 85%, whereas
+ensemblelearnersachievedanaccuracyof88.16%.)eworst
+performing algorithm is Wang-Bi-LSTM which achieved an
+accuracy of 62%.
+Figure 2 summarizes the average accuracy of all algo-
+rithms over the 4 datasets. Overall, the best performing
+algorithm is bagging classiﬁer (decision trees) (accuracy
+94%), whereas the worst performing algorithm is Wang-Bi-
+LSTM (accuracy 64.25%). Individual learners’ accuracy is
+77.6% whereas the accuracy of ensemble learners is 92.25%.
+Random forest achieved better accuracy on all datasets
+except DS2. However, accuracy score alone is not a good
+measure to evaluate the performance of a model; therefore,
+wealsoevaluateperformanceoflearningmodelsonthebasis
+of recall, precision, and F1-score.
+Tables 3–5 summarize the recall, precision, and F1 score
+ofeachalgorithmonallthefourdatasets.Intermsofaverage
+precision (Table 3), boosting classiﬁer (XGBoost) achieved
+the best results. )e average precision of boosting classiﬁer
+(XGBoost) on all the four datasets is 95.25%. Random forest
+(RF) achieved a precision of 79.75%; however, on the three
+datasets (removing the dataset with the lowest score, i.e.,
+DS2), the average precision of random forest jumped to
+96.3%. )e corresponding score for boosting classiﬁer
+(XGBoost) is 96.3% as well.
+Based on the recall performance metric, bagging clas-
+siﬁer (decision trees) stands best by achieving a recall score
+of 0.942. )is is closely followed by boosting classiﬁer
+(XGBoost) which achieved a recall of 0.94. Among the
+benchmark algorithms, Perez-LSVM is found to be best
+performing algorithm, achieving a recall score of 0.92. )e
+algorithms exhibited a similar performance behavior on F1-
+score as that of precision. Boosting classiﬁer (XGBoost)
+achieved F1-score of 0.945, the best among all the tech-
+niques, followed by bagging classiﬁer (decision trees) and
+logistic regression (LR).
+Figure 3 is a graphical representation of average per-
+formance of learning algorithms on all datasets using pre-
+cision, recall, and F1-score. It can be seen that there is not
+much diﬀerence between the performance of learning al-
+gorithms using various performance metrics except for
+linear SVM, KNN, Wang-CNN, and Wang-Bi-LSTM.
+)e ensemble learner XGBoost performed better in
+comparison to other learning models on all performance
+Table 1: Confusion matrix.
+Predicted true Predicted false
+Actual true True positive (TP) False negative (FN)
+Actual false False positive (FP) True negative (TN)
+Table 2: Overall accuracy score for each dataset.
+DS1 DS2 DS3 DS4
+Logistic regression (LR) 0.97 0.91 0.91 0.87
+Linear SVM (LSVM) 0.98 0.37 0.53 0.86
+Multilayer perceptron 0.98 0.35 0.94 0.9
+K-nearest neighbors (KNN) 0.88 0.28 0.82 0.77
+Ensemble learners
+Random forest (RF) 0.99 0.35 0.95 0.91
+Voting classiﬁer (RF, LR, KNN) 0.97 0.88 0.94 0.88
+Voting classiﬁer (LR, LSVM, CART) 0.96 0.86 0.92 0.85
+Bagging classiﬁer (decision trees) 0.98 0.94 0.94 0.9
+Boosting classiﬁer (AdaBoost) 0.98 0.92 0.92 0.86
+Boosting classiﬁer (XGBoost) 0.98 0.94 0.94 0.89
+Benchmark algorithms
+Perez-LSVM 0.99 0.79 0.96 0.9
+Wang-CNN 0.87 0.66 0.58 0.73
+Wang-Bi-LSTM 0.86 0.52 0.57 0.62
+Complexity 7
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 8 ---
+1
+0.95
+0.9
+0.85
+0.8
+0.75
+0.7
+0.65
+0.6
+Accuracy
+Logistic
+regression
+(LR)
+Linear SVM Multilayer
+perceptron
+K nearest
+neighbors
+(KNN)
+Random
+forests (RF)
+Voting
+classiﬁer
+(RF ,
+LR, KNN)
+Voting
+classiﬁer
+(LR,
+LSVM, CART)
+Bagging
+classiﬁer
+(Decision
+trees)
+Boosting
+classiﬁer
+(AdaBoost)
+Boosting
+classiﬁer
+(XGboost)
+Perez-LSVM Wang-CNN Wang-Bi-
+LSTM
+Algorithms
+Figure 2: Average accuracy over all datasets.
+Table 3: Precision on the 4 datasets.
+DS1 DS2 DS3 DS4
+Logistic regression (LR) 0.98 0.92 0.93 0.88
+Linear SVM (LSVM) 0.98 0.31 0.54 0.88
+Multilayer perceptron 0.97 0.32 0.93 0.92
+K-nearest neighbors (KNN) 0.91 0.22 0.85 0.8
+Ensemble learners
+Random forest (RF) 0.99 0.3 0.98 0.92
+Voting classiﬁer (RF, LR, KNN) 0.96 0.88 0.92 0.86
+Voting classiﬁer (LR, LSVM, CART) 0.94 0.86 0.88 0.83
+Bagging classiﬁer (decision trees) 0.98 0.94 0.93 0.9
+Boosting classiﬁer (AdaBoost) 0.98 0.92 0.92 0.86
+Boosting classiﬁer (XGBoost) 0.99 0.94 0.96 0.92
+Benchmark algorithms
+Perez-LSVM 0.99 0.79 0.96 0.9
+Wang-CNN 0.84 0.65 0.48 0.72
+Wang-Bi-LSTM 0.92 0.43 0.5 0.65
+Table 4: Recall on the 4 datasets.
+DS1 DS2 DS3 DS4
+Logistic regression (LR) 0.98 0.9 0.92 0.86
+Linear SVM (LSVM) 0.98 0.32 1 0.86
+Multilayer perceptron 1 0.36 0.96 0.88
+K-nearest neighbors (KNN) 0.87 0.24 0.81 0.74
+Ensemble learners
+Random forest (RF) 1 0.34 0.93 0.91
+Voting classiﬁer (RF, LR, KNN) 0.97 0.89 0.96 0.9
+Voting classiﬁer (LR, LSVM, CART) 0.97 0.87 0.96 0.89
+Bagging classiﬁer (decision trees) 0.97 0.95 0.94 0.91
+Boosting classiﬁer (AdaBoost) 0.98 0.93 0.92 0.86
+Boosting classiﬁer (XGBoost) 0.99 0.94 0.94 0.89
+Benchmark algorithms
+Perez-LSVM 0.99 0.81 0.97 0.91
+Wang-CNN 0.9 0.71 0.29 0.75
+Wang-Bi-LSTM 0.78 0.59 0.35 0.61
+8 Complexity
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 9 ---
+metrics. )e main factor leading to the superior perfor-
+manceofXGBoostis theworkingprinciplewhicheﬃciently
+identiﬁes errors and minimizes them in each iteration. )e
+basic intuition behind the working of XGBoost is to use
+multiple classiﬁcation and regression trees (CART) which
+combine multiple weak learners to assign higher weights to
+misclassiﬁed data points. )erefore, during each subsequent
+iteration, the model is able to correctly identify the mis-
+classiﬁed points whereas regularization parameters are used
+to reduce the overﬁtting problem.
+Logistic regression is a relatively simpler model but
+achieved an average accuracy of over 90% on the three
+datasets (DS1, DS2, and DS3). )ere can be multiple ex-
+planations for achieving a high average accuracy; ﬁrstly,
+logistic regression model is ﬁne-tuned using an extensive
+grid search with diﬀerent hyperparameters; secondly, some
+of the datasets (such as DS1) have similar writing styles of
+authors, which led to 97% accuracy of logistic regression
+model. On DS4, which is the combination of all the three
+datasets (and thereby includes more versatile writing styles
+as well), the accuracy of logistic regression drops to 87%.
+4.Conclusion
+)e task of classifying news manually requires in-depth
+knowledgeofthedomainandexpertisetoidentifyanomalies
+in the text. In this research, we discussed the problem of
+classifyingfakenewsarticlesusingmachinelearningmodels
+and ensemble techniques. )e data we used in our work is
+collected from the World Wide Web and contains news
+Table 5: F1-score on the 4 datasets.
+DS1 DS2 DS3 DS4
+Logistic regression (LR) 0.98 0.91 0.92 0.87
+Linear SVM (LSVM) 0.98 0.32 0.7 0.87
+Multilayer perceptron 0.98 0.34 0.95 0.9
+K-nearest neighbors (KNN) 0.89 0.23 0.83 0.77
+Ensemble learners
+Random forest (RF) 0.99 0.32 0.95 0.91
+Voting classiﬁer (RF, LR, KNN) 0.97 0.88 0.94 0.88
+Voting classiﬁer (LR, LSVM, CART) 0.96 0.86 0.92 0.86
+Bagging classiﬁer (decision trees) 0.98 0.94 0.94 0.9
+Boosting classiﬁer (AdaBoost) 0.98 0.92 0.92 0.86
+Boosting classiﬁer (XGBoost) 0.99 0.94 0.95 0.9
+Benchmark algorithms
+Perez-LSVM 0.99 0.8 0.96 0.9
+Wang-CNN 0.87 0.67 0.31 0.73
+Wang-Bi-LSTM 0.84 0.44 0.35 0.57
+Logistic
+regression
+(LR)
+Linear SVM Multilayer
+perceptron
+K nearest
+neighbors
+(KNN)
+Random
+forests (RF)
+Voting
+classiﬁer
+(RF ,
+LR, KNN)
+Voting
+classiﬁer
+(LR,
+LSVM, CART)
+Bagging
+classiﬁer
+(Decision
+trees)
+Boosting
+classiﬁer
+(AdaBoost)
+Boosting
+classiﬁer
+(XGboost)
+Perez-LSVM Wang-CNN Wang-Bi-
+LSTM
+Algorithms
+1
+0.95
+0.9
+0.85
+0.8
+0.75
+0.7
+0.65
+0.6
+0.55
+0.5
+Precision/recall/F1-score
+Precision
+Recall
+F1-score
+Figure 3: Precision, recall, and F1-score over all datasets.
+Complexity 9
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 10 ---
+articles from various domains to cover most of the news
+rather than speciﬁcally classifying political news. )e pri-
+mary aim of the research is to identify patterns in text that
+diﬀerentiate fake articles from true news. We extracted
+diﬀerent textual features from the articles using an LIWC
+tool and used the feature set as an input to the models. )e
+learningmodelsweretrainedandparameter-tunedtoobtain
+optimal accuracy. Some models have achieved compara-
+tively higher accuracy than others. We used multiple per-
+formance metrics to compare the results for each algorithm.
+)eensemblelearnershaveshownanoverallbetterscoreon
+all performance metrics as compared to the individual
+learners.
+Fake news detection has many open issues that require
+attention of researchers. For instance, in order to reduce the
+spreadoffakenews,identifyingkeyelementsinvolvedinthe
+spread of news is an important step. Graph theory and
+machinelearningtechniquescanbeemployedtoidentifythe
+key sources involved in spread of fake news. Likewise, real
+time fake news identiﬁcation in videos can be another
+possible future direction.
+Data Availability
+Previouslyreporteddatawereusedtosupportthisstudyand
+are available at https://www.kaggle.com/c/fake-news and
+https://www.kaggle.com/jruvika/fake-news-detection.
+Conflicts of Interest
+)e authors declare that there are no conﬂicts of interest
+regarding the publication of this paper.
+References
+[1] A. Douglas, “News consumption and the new electronic
+media,” 7e International Journal of Press/Politics, vol. 11,
+no. 1, pp. 29–52, 2006.
+[2] J. Wong, “Almost all the traﬃc to fake news sites is from
+facebook, new data show,” 2016.
+[3] D. M. J. Lazer, M. A. Baum, Y. Benkler et al., “)e science of
+fake news,”Science, vol. 359, no. 6380, pp. 1094–1096, 2018.
+[4] S.A.Garc ´ıa,G.G.Garc ´ıa,M.S.Prieto,A.J.M.Guerrero,and
+C.R. Jim´enez, “)e impactof termfake news onthe scientiﬁc
+community scientiﬁc performance and mapping in web of
+science,”Social Sciences, vol. 9, no. 5, 2020.
+[5] A. D. Holan, 2016 Lie of the Year: Fake News, Politifact,
+Washington, DC, USA, 2016.
+[6] S. Kogan, T. J. Moskowitz, and M. Niessner, “Fake News:
+Evidence from Financial Markets,” 2019, https://ssrn.com/
+abstract=3237763.
+[7] A. Robb, “Anatomy of a fake news scandal,”Rolling Stone,
+vol. 1301, pp. 28–33, 2017.
+[8] J. Soll, “)e long and brutal history of fake news,”Politico
+Magazine, vol. 18, no. 12, 2016.
+[9] J. Hua and R. Shaw, “Corona virus (covid-19) “infodemic”
+and emerging issues through a data lens: the case of China,”
+International Journal of Environmental Research and Public
+Health, vol. 17, no. 7, p. 2309, 2020.
+[10] N. K. Conroy, V. L. Rubin, and Y. Chen, “Automatic de-
+ception detection: methods for ﬁnding fake news,”
+Proceedings of the Association for Information Science and
+Technology, vol. 52, no. 1, pp. 1–4, 2015.
+[11] F. T. Asr and M. Taboada, “Misinfotext: a collection of news
+articles, with false and true labels,” 2019.
+[12] K. Shu, A. Sliva, S. Wang, J. Tang, and H. Liu, “Fake news
+detection on social media,” ACM SIGKDD Explorations
+Newsletter, vol. 19, no. 1, pp. 22–36, 2017.
+[13] S.Vosoughi,D.Roy,andS.Aral,“)espreadoftrueandfalse
+newsonline,” Science, vol.359,no. 6380,pp.1146–1151,2018.
+[14] H. Allcott and M. Gentzkow, “Social media and fake news in
+the 2016 election,”Journal of Economic Perspectives, vol. 31,
+no. 2, pp. 211–236, 2017.
+[15] V.L.Rubin,N.Conroy,Y.Chen,andS.Cornwell,“Fakenews
+or truth? using satirical cues to detect potentially misleading
+news,” inProceedings of the Second Workshop on Computa-
+tionalApproachestoDeceptionDetection,pp.7–17,SanDiego,
+CA, USA, 2016.
+[16] H. Jwa, D. Oh, K. Park, J. M. Kang, and H. Lim, “exBAKE:
+automatic fake news detection model based on bidirectional
+encoder representations from transformers (bert),”Applied
+Sciences, vol. 9, no. 19, 2019.
+[17] H. Ahmed, I. Traore, and S. Saad, “Detection of online fake
+news using n-gram analysis and machine learning tech-
+niques,” in Proceedings of the International Conference on
+Intelligent,Secure,andDependableSystemsinDistributedand
+Cloud Environments, pp. 127–138, Springer, Vancouver,
+Canada, 2017.
+[18] W. Y. Wang,Liar, Liar Pants on Fire: A New Benchmark
+Dataset for Fake News Detection, Association for Computa-
+tional Linguistics, Stroudsburg, PA, USA, 2017.
+[19] B.Riedel,I.Augenstein,G.P.Spithourakis,andS.Riedel,“A
+simplebuttough-to-beatbaselineforthefakenewschallenge
+stance detection task,” 2017, https://arxiv.org/abs/1707.
+03264.
+[20] N. Ruchansky, S. Seo, and Y. Liu, “Csi: a hybrid deep model
+for fake news detection,” inProceedingsofthe2017ACMon
+Conference on Information and Knowledge Management,
+pp. 797–806, Singapore, 2017.
+[21] V. P´erez-Rosas, B. Kleinberg, A. Lefevre, and R. Mihalcea,
+“Automatic detection of fake news,” 2017, https://arxiv.org/
+abs/1708.07104.
+[22] P. B¨ uhlmann, “Bagging, boosting and ensemble methods,” in
+Handbook of Computational Statistics, pp. 985–1022,
+Springer, Berlin, Germany, 2012.
+[23] H. Ahmed, I. Traore, and S. Saad, “Detecting opinion spams
+and fake news using text classiﬁcation,”SecurityandPrivacy,
+vol. 1, no. 1, 2018.
+[24] Kaggle, Fake News, Kaggle, San Francisco, CA, USA, 2018,
+https://www.kaggle.com/c/fake-news.
+[25] Kaggle,FakeNewsDetection,Kaggle,SanFrancisco,CA,USA,
+2018, https://www.kaggle.com/jruvika/fake-news-detection.
+[26] J. Bergstra and Y. Bengio, “Random search for hyper-pa-
+rameteroptimization,” JournalofMachineLearningResearch,
+vol. 13, pp. 281–305, 2012.
+[27] T. M. Mitchell,7eDisciplineofMachineLearning, Carnegie
+Mellon University, Pittsburgh, PA, USA, 2006.
+[28] N.CristianiniandJ.Shawe-Taylor, AnIntroductiontoSupport
+Vector Machines and Other Kernel-Based Learning Methods,
+Cambridge University Press, Cambridge, UK, 2000.
+[29] T. Hofmann, B. Sch¨olkopf, and A. J. Smola, “Kernel methods
+in machine learning,”7eAnnalsofStatistics, vol. 36, no. 3,
+pp. 1171–1220, 2008.
+10 Complexity
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+--- PAGE 11 ---
+[30] V. Kecman, Support Vector Machines-An Introduction in
+“Support Vector Machines: 7eory and Applications”,
+Springer, New York City, NY, USA, 2005.
+[31] S. Akhtar, F. Hussain, F. R. Raja et al., “Improving mispro-
+nunciation detection of arabic words for non-native learners
+using deep convolutional neural network features,” Elec-
+tronics, vol. 9, no. 6, 2020.
+[32] D. Ruta and B. Gabrys, “Classiﬁer selection for majority
+voting,”Information Fusion, vol. 6, no. 1, pp. 63–81, 2005.
+[33] B.Gregorutti,B.Michel,andP.Saint-Pierre,“Correlationand
+variable importance in random forests,”Statistics and Com-
+puting, vol. 27, no. 3, pp. 659–678, 2017.
+[34] L. Breiman, J. Friedman, R. Olshen, and C. Stone,Classiﬁ-
+cationandRegressionTrees, Springer, Berlin, Germany, 1984.
+[35] R. E. Schapire, “A brief introduction to boosting,” IJCAI,
+vol. 99, pp. 1401–1406, 1999.
+[36] E. M. Dos Santos, R. Sabourin, and P. Maupin, “Overﬁtting
+cautious selection of classiﬁer ensembles with genetic algo-
+rithms,”InformationFusion, vol.10, no. 2, pp.150–162, 2009.
+[37] T. Chen and C. Guestrin, “Xgboost: a scalable tree boosting
+system,” inProceedings of the 22nd ACM SIGKDD Interna-
+tionalConferenceonKnowledgeDiscoveryandDataMining,
+pp. 785–794, San Francisco, CA, USA, 2016.
+[38] T. Hastie, S. Rosset, J. Zhu, and H. Zou, “Multi-class ada-
+boost,”StatisticsanditsInterface, vol. 2, no. 3, pp. 349–360,
+2009.
+[39] L. Lam and S. Y. Suen, “Application of majority voting to
+pattern recognition: an analysis of its behavior and perfor-
+mance,”IEEETransactionsonSystems,Man,andCybernetics-
+PartA:SystemsandHumans,vol.27,no.5,pp.553–568,1997.
+Complexity 11
+ 8503, 2020, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1155/2020/8885861, Wiley Online Library on [23/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License

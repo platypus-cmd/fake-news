@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+.ipynb_checkpoints/
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.pyc
+.DS_Store
+
+# Unrelated study guides
+AI_Exam_Guide.html
+AI_Exam_Preparation_Guide.html
+IMED_Entrepreneurship_Study_Guide.html
+entrepreneurship_exam_guide.html
